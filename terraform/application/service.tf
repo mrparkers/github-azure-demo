@@ -1,7 +1,3 @@
-locals {
-  sql_connection_string = "Server=tcp:${azurerm_sql_server.sql_server.fully_qualified_domain_name},1433;Database=${azurerm_sql_database.sql_database.name};User ID=${azurerm_sql_server.sql_server.administrator_login};Password=${tostring(azurerm_sql_server.sql_server.administrator_login_password)};Encrypt=true;Connection Timeout=30;"
-}
-
 resource "azurerm_app_service_plan" "service_plan" {
   name                = "github-workshop-${var.name}"
   location            = azurerm_resource_group.resource_group.location
@@ -13,6 +9,8 @@ resource "azurerm_app_service_plan" "service_plan" {
     tier = var.service_plan_tier
     size = var.service_plan_size
   }
+
+  tags = local.tags
 }
 
 resource "azurerm_app_service" "app_service" {
@@ -32,4 +30,6 @@ resource "azurerm_app_service" "app_service" {
     "ASPNETCORE_Conduit_DatabaseProvider" = "sqlserver"
     "ASPNETCORE_Conduit_ConnectionString" = local.sql_connection_string
   }
+
+  tags = local.tags
 }
