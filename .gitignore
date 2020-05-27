@@ -288,3 +288,9 @@ tools
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
+
+# JS Builds
+/dist
+
+# Jest Coverage
+/coverage
