@@ -6,7 +6,7 @@ locals {
 remote_state {
   backend = "azurerm"
   generate = {
-    path      = "backend.tf"
+    path      = "terragrunt-backend.tf"
     if_exists = "overwrite_terragrunt"
   }
   config = {
