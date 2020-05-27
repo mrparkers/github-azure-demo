@@ -288,4 +288,10 @@ tools
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
-backend.tf
+terragrunt-backend.tf
+
+# JS Builds
+/dist
+
+# Jest Coverage
+/coverage
