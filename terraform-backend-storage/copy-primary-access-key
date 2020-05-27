@@ -1,0 +1,3 @@
+#!/bin/sh
+
+terraform show -json | jq '.values.root_module.resources[] | select( .type == "azurerm_storage_account" and .name == "storage_account") .values.primary_access_key' | pbcopy

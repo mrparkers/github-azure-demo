@@ -1,5 +1,5 @@
 output "resource_group_name" {
-  value = azurerm_resource_group.resource_group.name
+  value = data.azurerm_resource_group.github_workshop.name
 }
 
 output "sql_server_name" {

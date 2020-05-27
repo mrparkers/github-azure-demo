@@ -1,5 +1,9 @@
-variable "name" {
-  default = "flywheel"
+variable "environment" {
+  default = "preview"
+}
+
+variable "branch" {
+  default = "master"
 }
 
 variable "resource_group_name" {}

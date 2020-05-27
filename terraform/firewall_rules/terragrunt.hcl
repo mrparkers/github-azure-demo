@@ -1,3 +1,7 @@
+include {
+  path = find_in_parent_folders()
+}
+
 dependency "application" {
   config_path = "../application"
   mock_outputs = {

@@ -1,7 +1,7 @@
 resource "azurerm_app_service_plan" "service_plan" {
-  name                = "github-workshop-${var.name}"
-  location            = azurerm_resource_group.resource_group.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  name                = "github-workshop-${var.environment}-${var.branch}"
+  location            = data.azurerm_resource_group.github_workshop.location
+  resource_group_name = data.azurerm_resource_group.github_workshop.name
   kind                = "Linux"
   reserved            = true
 
@@ -14,9 +14,9 @@ resource "azurerm_app_service_plan" "service_plan" {
 }
 
 resource "azurerm_app_service" "app_service" {
-  name                = "realworld-demo-${var.name}"
-  location            = azurerm_resource_group.resource_group.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  name                = "realworld-demo-${var.environment}-${var.branch}"
+  location            = data.azurerm_resource_group.github_workshop.location
+  resource_group_name = data.azurerm_resource_group.github_workshop.name
   app_service_plan_id = azurerm_app_service_plan.service_plan.id
   site_config {
     dotnet_framework_version = "v4.0"

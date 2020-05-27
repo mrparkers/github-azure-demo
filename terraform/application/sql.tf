@@ -3,9 +3,9 @@ resource "random_password" "sql_admin_pasword" {
 }
 
 resource "azurerm_sql_server" "sql_server" {
-  name                = "realworld-demo-${var.name}"
-  resource_group_name = azurerm_resource_group.resource_group.name
-  location            = azurerm_resource_group.resource_group.location
+  name                = "realworld-demo-${var.environment}-${var.branch}"
+  resource_group_name = data.azurerm_resource_group.github_workshop.name
+  location            = data.azurerm_resource_group.github_workshop.location
   version             = "12.0"
 
   administrator_login          = "realworld-admin"
@@ -16,8 +16,8 @@ resource "azurerm_sql_server" "sql_server" {
 
 resource "azurerm_sql_database" "sql_database" {
   name                = "realworld"
-  resource_group_name = azurerm_resource_group.resource_group.name
-  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = data.azurerm_resource_group.github_workshop.name
+  location            = data.azurerm_resource_group.github_workshop.location
   server_name         = azurerm_sql_server.sql_server.name
 
   tags = local.tags
